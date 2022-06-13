@@ -8,17 +8,17 @@
 
 source .env
 
-if [ ! $API_KEY ]; then 
+if [ ! "$API_KEY" ]; then
     echo "You need a \$API_KEY defined in a .env file"
     exit 1
 fi
 
-if [ ! $1 ]; then 
+if [ ! "$1" ]; then
     echo "You need to provide a Path for your project"
     exit 1
 fi
 
-if [ ! $2 ]; then 
+if [ ! "$2" ]; then
     echo "You need to provide a name for your project"
     exit 1
 fi
@@ -30,7 +30,7 @@ echo $(pwd)
 echo "Creating elephanSQL DB ..."
 
 
- curl -u :$API_KEY \
+ curl -u :"$API_KEY" \
  -d "name=$2-dev&plan=turtle&region=google-compute-engine::europe-west2" \
  https://customer.elephantsql.com/api/instances > dbinfo.json
 
